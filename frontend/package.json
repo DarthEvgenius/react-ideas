@@ -1,5 +1,5 @@
 {
-  "name": "react-ideas",
+  "name": "@reactideas/frontend",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -11,6 +11,10 @@
     "prettify": "prettier --loglevel warn --cache --write '{src/**/*,*}.{ts,tsx,js,json,yml,scss}' '!**/{node_modules,dist}/**/*'"
   },
   "dependencies": {
+    "@reactideas/backend": "workspace:*",
+    "@tanstack/react-query": "^5.90.10",
+    "@trpc/client": "^11.7.2",
+    "@trpc/react-query": "^11.7.2",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },

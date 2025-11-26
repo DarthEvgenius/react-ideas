@@ -1,5 +1,6 @@
 import { trpc } from "../../lib/trpc"
 
+
 export default function AllIdeasPage() {  
   const { data, error, isLoading, isFetching, isError } = trpc.getIdeas.useQuery()
 

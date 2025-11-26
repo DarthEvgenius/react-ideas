@@ -1,5 +1,6 @@
 import AllIdeasPage from './pages/AllIdeasPage'
-import { TrpcProvider } from './lib/trpc'
+import { TrpcProvider } from './providers/TrpcProvider'
+
 
 function App() {
   return (

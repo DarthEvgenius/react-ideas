@@ -5,5 +5,14 @@
   "workspaces": [
     "backend",
     "frontend"
-  ]
+  ],
+  "scripts": {
+    "b": "pnpm --filter @reactideas/backend",
+    "f": "pnpm --filter @reactideas/frontend",
+    "dev": "pnpm -r --parallel dev",
+    "types": "concurrently 'pnpm b types' 'pnpm f types'"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
 }

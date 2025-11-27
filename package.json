@@ -6,16 +6,24 @@
     "backend",
     "frontend"
   ],
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
   "scripts": {
     "b": "pnpm --filter @reactideas/backend",
     "f": "pnpm --filter @reactideas/frontend",
     "dev": "pnpm -r --parallel dev",
     "types": "concurrently 'pnpm b types' 'pnpm f types'",
     "lint": "concurrently 'pnpm b lint' 'pnpm f lint'",
-    "prettify": "pnpm -r --parallel prettify"
+    "lint:fix": "concurrently 'pnpm b lint --fix' 'pnpm f lint --fix'",
+    "prettify": "pnpm -r --parallel prettify",
+    "prepare": "husky"
   },
   "devDependencies": {
     "concurrently": "^9.2.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
     "prettier": "^3.6.2"
   }
 }

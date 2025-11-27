@@ -7,37 +7,6 @@ import { defineConfig } from 'eslint/config'
 import prettierPlugin from 'eslint-plugin-prettier'
 import prettierConfig from 'eslint-config-prettier'
 
-// /**@type {import('eslint').Linter.FlatConfig} */
-// export default [
-//   {
-//     plugins: {
-//       react: pluginReact,
-//       prettier: prettierPlugin
-//     }
-//   },
-//   {
-//     ignores: ['node_modules', 'dist']
-//   },
-//   js.configs.recommended,
-//   {
-//     languageOptions: {
-//       globals: {
-//         ...globals.node,
-//         ...globals.browser,
-//         ...globals.es2022
-//       },
-//       parserOptions: eslintReact.configs.recommended.parserOptions
-//     }
-//   },
-//   {
-//     files: ["**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"],
-//     rules: {
-//       ...prettierConfig.rules,
-//       // 'prefer-const': 'warn'
-//     }
-//   }
-// ]
-
 export default defineConfig([
   {
     files: ['**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
@@ -62,6 +31,8 @@ export default defineConfig([
       'no-undef': 'warn',
       'no-console': 'off',
       'no-constant-condition': 'warn',
+      // not work with prettier
+      'no-multiple-empty-lines': ['error', { max: 5 }],
     },
     settings: {
       react: {

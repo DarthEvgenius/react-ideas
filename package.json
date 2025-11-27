@@ -11,9 +11,11 @@
     "f": "pnpm --filter @reactideas/frontend",
     "dev": "pnpm -r --parallel dev",
     "types": "concurrently 'pnpm b types' 'pnpm f types'",
-    "lint": "concurrently 'pnpm b lint' 'pnpm f lint'"
+    "lint": "concurrently 'pnpm b lint' 'pnpm f lint'",
+    "prettify": "pnpm -r --parallel prettify"
   },
   "devDependencies": {
-    "concurrently": "^9.2.1"
+    "concurrently": "^9.2.1",
+    "prettier": "^3.6.2"
   }
 }

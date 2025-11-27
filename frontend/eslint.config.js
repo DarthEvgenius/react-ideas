@@ -63,6 +63,11 @@ export default defineConfig([
       'no-console': 'off',
       'no-constant-condition': 'warn',
     },
+    settings: {
+      react: {
+        version: 'detect',
+      },
+    },
   },
   tseslint.configs.recommended,
   // https://github.com/jsx-eslint/eslint-plugin-react?tab=readme-ov-file#configuration

@@ -15,6 +15,14 @@ export default defineConfig([
         tsconfigRootDir: import.meta.dirname,
       },
     },
+    rules: {
+      'no-unused-vars': 'warn',
+      'no-undef': 'warn',
+      'no-console': 'off',
+      'no-constant-condition': 'warn',
+      // not work with prettier
+      'no-multiple-empty-lines': ['error', { max: 5 }],
+    },
   },
   tseslint.configs.recommended,
 ])

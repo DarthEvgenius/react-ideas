@@ -10,16 +10,14 @@ export const queryClient = new QueryClient({
     queries: {
       retry: false, // these options are comfortable for develop
       refetchOnWindowFocus: false, // these options are comfortable for develop
-    }
-  }
+    },
+  },
 })
 
 export const trpcClient = trpc.createClient({
   links: [
     httpBatchLink({
-      url: 'http://localhost:3456/trpc' // here we specify endpoint for all trpc routes -> look into backend/index.ts
-    })
-  ]
+      url: 'http://localhost:3456/trpc', // here we specify endpoint for all trpc routes -> look into backend/index.ts
+    }),
+  ],
 })
-
-

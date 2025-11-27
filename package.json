@@ -10,7 +10,8 @@
     "b": "pnpm --filter @reactideas/backend",
     "f": "pnpm --filter @reactideas/frontend",
     "dev": "pnpm -r --parallel dev",
-    "types": "concurrently 'pnpm b types' 'pnpm f types'"
+    "types": "concurrently 'pnpm b types' 'pnpm f types'",
+    "lint": "concurrently 'pnpm b lint' 'pnpm f lint'"
   },
   "devDependencies": {
     "concurrently": "^9.2.1"

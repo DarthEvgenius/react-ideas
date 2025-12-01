@@ -8,6 +8,7 @@ import {
   viewIdeaRouteParams,
 } from './lib/routes'
 import Layout from './components/Layout'
+import './styles/global.scss'
 
 function App() {
   return (

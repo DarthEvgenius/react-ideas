@@ -2,13 +2,10 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import AllIdeasPage from './pages/AllIdeasPage'
 import ViewIdeaPage from './pages/ViewIdeaPage'
 import { TrpcProvider } from './providers/TrpcProvider'
-import {
-  getAllIdeasRoute,
-  getViewIdeaRoute,
-  viewIdeaRouteParams,
-} from './lib/routes'
+import * as routes from './lib/routes'
 import Layout from './components/Layout'
 import './styles/global.scss'
+import NewIdeaPage from './pages/NewIdeaPage'
 
 function App() {
   return (
@@ -16,9 +13,15 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route element={<Layout />}>
-            <Route path={getAllIdeasRoute()} element={<AllIdeasPage />} />
             <Route
-              path={getViewIdeaRoute(viewIdeaRouteParams)}
+              path={routes.getAllIdeasRoute()}
+              element={<AllIdeasPage />}
+            />
+
+            <Route path={routes.newIdeaPage()} element={<NewIdeaPage />} />
+
+            <Route
+              path={routes.getViewIdeaRoute(routes.viewIdeaRouteParams)}
               element={<ViewIdeaPage />}
             />
           </Route>

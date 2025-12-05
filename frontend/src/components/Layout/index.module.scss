@@ -1,4 +1,4 @@
-@import '../../styles/_vars';
+@import '../../styles/vars';
 @import '../../styles/_mixins';
 
 $breakpoint: '<=900px';
@@ -12,7 +12,6 @@ $breakpoint: '<=900px';
     flex-flow: column nowrap;
   }
 }
-
 .navigation {
   height: 100%;
   overflow: auto;
@@ -38,8 +37,6 @@ $breakpoint: '<=900px';
   font-size: 1.5rem;
 }
 
-.menu {
-}
 .item {
   &:not(:first-child) {
     margin-top: 5px;

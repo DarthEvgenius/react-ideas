@@ -1,6 +1,6 @@
 @use 'sass:math';
-@import './_vars';
-@import '../../node_modules/include-media/dist/_include-media';
+@import './vars';
+@import '../../node_modules/include-media/dist/include-media';
 
 @mixin link($color: $blue, $hoverColor: $red) {
   color: $color;
@@ -9,7 +9,6 @@
   border: none;
   padding: 0;
   cursor: pointer;
-  text-decoration: underline;
 
   &:hover,
   &:active {

@@ -2,6 +2,7 @@ import { getViewIdeaRoute } from '../../lib/routes'
 import { trpc } from '../../lib/trpc'
 import { Link } from 'react-router-dom'
 import css from './index.module.scss'
+import Segment from '../../components/Segment'
 
 export default function AllIdeasPage() {
   const { data, error, isLoading, isFetching, isError } =
@@ -16,22 +17,26 @@ export default function AllIdeasPage() {
   }
 
   return (
-    <div className={css.filter}>
-      <h1 className={css.title}>Ideas</h1>
-
-      {data?.ideas.map((i) => (
-        <div className={css.idea} key={i.nick}>
-          <h2 className={css.ideaName}>
-            <Link
-              className={css.ideaLink}
-              to={getViewIdeaRoute({ ideaNick: i.nick })}
+    <Segment title="All Ideas">
+      <div className={css.filter}>
+        {data?.ideas.map((idea) => (
+          <div className={css.idea} key={idea.nick}>
+            <Segment
+              size={2}
+              title={
+                <Link
+                  className={css.ideaLink}
+                  to={getViewIdeaRoute({ ideaNick: idea.nick })}
+                >
+                  {idea.name}
+                </Link>
+              }
             >
-              {i.name}
-            </Link>
-          </h2>
-          <p>{i.description}</p>
-        </div>
-      ))}
-    </div>
+              {idea.description}
+            </Segment>
+          </div>
+        ))}
+      </div>
+    </Segment>
   )
 }

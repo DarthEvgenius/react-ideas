@@ -8,6 +8,10 @@ import prettierPlugin from 'eslint-plugin-prettier'
 import prettierConfig from 'eslint-config-prettier'
 
 export default defineConfig([
+  tseslint.configs.recommended,
+  // https://github.com/jsx-eslint/eslint-plugin-react?tab=readme-ov-file#configuration
+  pluginReact.configs.flat.recommended,
+  pluginReact.configs.flat['jsx-runtime'],
   {
     files: ['**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
     plugins: {
@@ -33,6 +37,7 @@ export default defineConfig([
       'no-constant-condition': 'warn',
       // not work with prettier
       'no-multiple-empty-lines': ['error', { max: 5 }],
+      '@typescript-eslint/no-explicit-any': 'off',
     },
     settings: {
       react: {
@@ -40,8 +45,4 @@ export default defineConfig([
       },
     },
   },
-  tseslint.configs.recommended,
-  // https://github.com/jsx-eslint/eslint-plugin-react?tab=readme-ov-file#configuration
-  pluginReact.configs.flat.recommended,
-  pluginReact.configs.flat['jsx-runtime'],
 ])

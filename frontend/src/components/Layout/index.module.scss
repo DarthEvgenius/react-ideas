@@ -12,7 +12,9 @@ $breakpoint: '<=900px';
     flex-flow: column nowrap;
   }
 }
+
 .navigation {
+  height: $asdf;
   height: 100%;
   overflow: auto;
   flex: 0 0 200px;

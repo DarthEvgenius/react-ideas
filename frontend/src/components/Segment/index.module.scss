@@ -2,6 +2,8 @@
 @import '../../styles/mixins';
 
 .segment {
+  padding: 1rem;
+
   h1.title {
     @include h1;
   }

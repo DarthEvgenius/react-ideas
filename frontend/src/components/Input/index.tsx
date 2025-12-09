@@ -1,23 +1,40 @@
 import type { FormikProps } from 'formik'
+import css from './index.module.scss'
+import cn from 'classnames'
 
 export default function Input({
   name,
   label,
   formik,
+  maxWidth,
 }: {
   name: string
   label: string
   formik: FormikProps<any>
+  maxWidth?: number
 }) {
   const value = formik.values[name]
   const error = formik.errors[name] as string | undefined
   const touched = formik.touched[name]
+  const isDisabled = formik.isSubmitting
+  const isInvalid = !!touched && !!error
 
   return (
-    <div style={{ marginBottom: 10 }}>
-      <label htmlFor={name}>{label}</label>
-      <br />
+    <div
+      className={cn({
+        [css.field]: true,
+        [css.disabled]: isDisabled,
+      })}
+    >
+      <label className={css.label} htmlFor={name}>
+        {label}
+      </label>
       <input
+        className={cn({
+          [css.input]: true,
+          [css.invalid]: isInvalid,
+        })}
+        style={{ maxWidth }}
         type="text"
         id={name}
         onChange={(e) => {
@@ -27,8 +44,9 @@ export default function Input({
           formik.setFieldTouched(name)
         }}
         value={value}
+        disabled={isDisabled}
       />
-      {error && touched && <div style={{ color: 'red' }}>{error}</div>}
+      {isInvalid && <div className={css.error}>{error}</div>}
     </div>
   )
 }

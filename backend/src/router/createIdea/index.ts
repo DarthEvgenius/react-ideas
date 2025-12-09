@@ -6,6 +6,9 @@ import { ideas } from '../../lib/ideas'
 export const createIdeaTrpcRoute = publicProcedure
   .input(zCreateIdeaTrpcInput)
   .mutation(({ input }) => {
+    if (ideas.find((idea) => idea.nick === input.nick)) {
+      throw Error('Idea with this nick is already exists')
+    }
     ideas.unshift(input)
     return 'Idea has been added'
   })

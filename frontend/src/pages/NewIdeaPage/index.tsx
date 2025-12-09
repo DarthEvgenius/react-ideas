@@ -8,6 +8,8 @@ import { zCreateIdeaTrpcInput } from '@reactideas/backend/src/router/createIdea/
 import { toFormikValidate } from 'zod-formik-adapter'
 import { useState } from 'react'
 import Alert from '../../components/Alert'
+import Button from '../../components/Button'
+import FormItems from '../../components/FormItems'
 
 export default function NewIdeaPage() {
   const [isSuccessMessageVisible, setIsSuccessMessageVisible] = useState(false)
@@ -47,27 +49,34 @@ export default function NewIdeaPage() {
           formik.handleSubmit()
         }}
       >
-        <Input name="name" label="Name" formik={formik} />
+        <FormItems>
+          <Input name="name" label="Name" formik={formik} />
 
-        <Input name="nick" label="Nick" formik={formik} />
+          <Input name="nick" label="Nick" formik={formik} />
 
-        <Input
-          name="description"
-          label="description"
-          formik={formik}
-          maxWidth={300}
-        />
+          <Input
+            name="description"
+            label="description"
+            formik={formik}
+            maxWidth={300}
+          />
 
-        <Textarea name="text" label="text" formik={formik} />
+          <Textarea name="text" label="text" formik={formik} />
 
-        {!formik.isValid && !!formik.submitCount && (
-          <div style={{ color: 'red' }}>Some fields are invalid</div>
-        )}
-        {isSuccessMessageVisible && <Alert color="green">Idea created!</Alert>}
-        {submittingError && <Alert color="red">{submittingError}</Alert>}
-        <button type="submit" disabled={formik.isSubmitting}>
-          {formik.isSubmitting ? 'Submitting...' : 'Create Idea'}
-        </button>
+          {!formik.isValid && !!formik.submitCount && (
+            <div style={{ color: 'red' }}>Some fields are invalid</div>
+          )}
+
+          {isSuccessMessageVisible && (
+            <Alert color="green">Idea created!</Alert>
+          )}
+
+          {submittingError && <Alert color="red">{submittingError}</Alert>}
+
+          <Button loading={formik.isSubmitting}>
+            {formik.isSubmitting ? 'Submitting...' : 'Create Idea'}
+          </Button>
+        </FormItems>
       </form>
     </Segment>
   )

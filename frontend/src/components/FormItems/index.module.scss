@@ -1,0 +1,8 @@
+@import '../../styles/vars';
+@import '../../styles/mixins';
+
+.wrapper {
+  & > *:not(:last-child) {
+    margin-bottom: 0.75rem;
+  }
+}

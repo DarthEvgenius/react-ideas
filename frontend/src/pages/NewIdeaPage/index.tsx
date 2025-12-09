@@ -3,11 +3,13 @@ import Segment from '../../components/Segment'
 import Input from '../../components/Input'
 import Textarea from '../../components/Textarea'
 import { useFormik } from 'formik'
-// import { withZodSchema } from 'formik-validator-zod'
-import { z } from 'zod'
+import { trpc } from '../../lib/trpc'
+import { zCreateIdeaTrpcInput } from '@reactideas/backend/src/router/createIdea/input'
 import { toFormikValidate } from 'zod-formik-adapter'
 
 export default function NewIdeaPage() {
+  const createIdea = trpc.createIdea.useMutation()
+
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -15,21 +17,9 @@ export default function NewIdeaPage() {
       description: '',
       text: '',
     },
-    validate: toFormikValidate(
-      z.object({
-        name: z.string().min(1, 'Name is requered'),
-        nick: z
-          .string()
-          .min(1)
-          .regex(
-            /^[a-z0-9-]+$/,
-            'Nick may contain only lowercase letters, numbers and dashes'
-          ),
-        description: z.string().min(1, 'Description is requered'),
-        text: z.string().min(10, 'Text should be at least 10 characters long'),
-      })
-    ),
-    onSubmit: (values) => {
+    validate: toFormikValidate(zCreateIdeaTrpcInput),
+    onSubmit: async (values) => {
+      await createIdea.mutateAsync(values)
       console.log('Submitted from formik:', values)
     },
   })

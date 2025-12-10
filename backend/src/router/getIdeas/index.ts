@@ -1,7 +1,17 @@
 import { publicProcedure } from '../../lib/trpc'
-import { ideas } from '../../lib/ideas'
-import _ from 'lodash'
 
-export const getIdeasTrpcRoute = publicProcedure.query(() => {
-  return { ideas: ideas.map((idea) => _.omit(idea, ['text'])) }
+export const getIdeasTrpcRoute = publicProcedure.query(async({ctx}) => {
+  const ideas = await ctx.prisma.idea.findMany({
+    select: {
+      id: true,
+      nick: true,
+      name: true,
+      description: true,
+    },
+    orderBy: {
+      createdAt: 'desc',
+    }
+  })
+
+  return { ideas }
 })

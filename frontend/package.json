@@ -24,6 +24,7 @@
     "@trpc/client": "^11.7.2",
     "@trpc/react-query": "^11.7.2",
     "classnames": "^2.5.1",
+    "date-fns": "^4.1.0",
     "formik": "^2.4.9",
     "formik-validator-zod": "^2.2.0",
     "include-media": "^2.0.0",

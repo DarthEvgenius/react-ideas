@@ -5,10 +5,6 @@ import { zCreateIdeaTrpcInput } from './input'
 export const createIdeaTrpcRoute = publicProcedure
   .input(zCreateIdeaTrpcInput)
   .mutation(async ({ ctx, input }) => {
-    // if (ideas.find((idea) => idea.nick === input.nick)) {
-    //   throw Error('Idea with this nick is already exists')
-    // }
-    // ideas.unshift(input)
     
     const oldIdea = await ctx.prisma.idea.findUnique({
       where: {

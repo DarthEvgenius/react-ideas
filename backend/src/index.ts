@@ -1,7 +1,7 @@
 import express from 'express'
 import { trpcRouter } from './router'
 import cors from 'cors'
-import { applyTrpcToExporessApp } from './trpc'
+import { applyTrpcToExporessApp } from './lib/trpc';
 import { type AppContext, createAppContext } from './lib/ctx'
 
 ;(async () => {

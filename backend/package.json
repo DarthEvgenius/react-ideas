@@ -11,7 +11,7 @@
     "build": "rimraf ./dist && tsc --build ./tsconfig.json",
     "start": "node ./dist/index.js",
     "types": "tsc --noEmit --project ./tsconfig.json",
-    "pmd": "prisma migrate dev",
+    "pmd": "prisma migrate dev && npx prisma generate",
     "pgc": "prisma generate",
     "prettify": "prettier --loglevel warn --cache --write '{src/**/*,*}.{ts,tsx,js,json,yml,scss}' '!**/{node_modules,dist}/**/*'",
     "lint": "eslint --cache --cache-location ./node_modules/.cache/.eslintcache --ext .ts .",
@@ -27,6 +27,7 @@
     "lodash": "^4.17.21",
     "pg": "^8.16.3",
     "superjson": "^2.2.6",
+    "trpc-playground": "^1.0.4",
     "zod": "^4.1.13"
   },
   "devDependencies": {

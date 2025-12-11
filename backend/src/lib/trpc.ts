@@ -4,13 +4,14 @@ import * as trcpExpress from '@trpc/server/adapters/express'
 import { initTRPC } from '@trpc/server'
 import { type AppContext } from './ctx'
 import SuperJSON from 'superjson'
+import { expressHandler } from 'trpc-playground/handlers/express'
 
 export const trpc = initTRPC.context<AppContext>().create({
   transformer: SuperJSON
 })
 export const publicProcedure = trpc.procedure
 
-export const applyTrpcToExporessApp = (
+export const applyTrpcToExporessApp = async (
   expressApp: Express,
   appContext: AppContext,
   trpcRouter: TrpcRouterType
@@ -20,6 +21,18 @@ export const applyTrpcToExporessApp = (
     trcpExpress.createExpressMiddleware({
       router: trpcRouter,
       createContext: () => appContext,
+    })
+  )
+
+  expressApp.use(
+    '/trpc-playground',
+    await expressHandler({
+      trpcApiEndpoint: '/trpc',
+      playgroundEndpoint: '/trpc-playground',
+      router: trpcRouter,
+      request: {
+        superjson: true,
+      }
     })
   )
 }

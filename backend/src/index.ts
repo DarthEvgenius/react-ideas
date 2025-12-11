@@ -12,11 +12,7 @@ import { type AppContext, createAppContext } from './lib/ctx'
     const expressApp = express()
     expressApp.use(cors())
     
-    expressApp.get('/', (req, res) => {
-      res.send('root')
-    })
-    
-    applyTrpcToExporessApp(expressApp, ctx, trpcRouter)
+    await applyTrpcToExporessApp(expressApp, ctx, trpcRouter)
     
     expressApp.listen(3456, () => {
       console.log('Listenint at http://localhost:3456')

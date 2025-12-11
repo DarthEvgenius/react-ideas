@@ -1,6 +1,7 @@
 import { trpc } from '../lib/trpc'
 
-/* Here we generate importing files via 'generate index' VS code extension
+/* cmd + shift + p --> generate index
+ * Here we generate importing files via 'generate index' VS code extension
  * use command pallete: cmd + shift + p --> generate index
  * expect to have index.ts files in folders, and folder's names are used to generate names of functions for export
  */
@@ -9,6 +10,7 @@ import { trpc } from '../lib/trpc'
 import { createIdeaTrpcRoute } from './createIdea'
 import { getIdeaTrpcRoute } from './getIdea'
 import { getIdeasTrpcRoute } from './getIdeas'
+import { signUpTrpcRoute } from './signUp'
 // @endindex
 
 export const trpcRouter = trpc.router({
@@ -16,6 +18,7 @@ export const trpcRouter = trpc.router({
   createIdea: createIdeaTrpcRoute,
   getIdea: getIdeaTrpcRoute,
   getIdeas: getIdeasTrpcRoute,
+  signUp: signUpTrpcRoute,
   // @endindex
 })
 

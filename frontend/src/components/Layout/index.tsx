@@ -16,8 +16,14 @@ export default function Layout() {
           </li>
 
           <li className={css.item}>
-            <Link to={routes.newIdeaPage()} className={css.link}>
+            <Link to={routes.getNewIdeaRoute()} className={css.link}>
               New Idea
+            </Link>
+          </li>
+
+          <li className={css.item}>
+            <Link to={routes.getSignUpRoute()} className={css.link}>
+              Sign Up
             </Link>
           </li>
         </ul>

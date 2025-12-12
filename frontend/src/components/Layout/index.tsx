@@ -26,6 +26,12 @@ export default function Layout() {
               Sign Up
             </Link>
           </li>
+
+          <li className={css.item}>
+            <Link to={routes.getSignInRoute()} className={css.link}>
+              Sign In
+            </Link>
+          </li>
         </ul>
       </div>
 

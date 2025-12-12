@@ -7,6 +7,7 @@ import Layout from './components/Layout'
 import './styles/global.scss'
 import NewIdeaPage from './pages/NewIdeaPage'
 import { SignUpPage } from './pages/SignUpPage'
+import { SignInPage } from './pages/SignInPage'
 
 function App() {
   return (
@@ -22,6 +23,8 @@ function App() {
             <Route path={routes.getNewIdeaRoute()} element={<NewIdeaPage />} />
 
             <Route path={routes.getSignUpRoute()} element={<SignUpPage />} />
+
+            <Route path={routes.getSignInRoute()} element={<SignInPage />} />
 
             <Route
               path={routes.getViewIdeaRoute(routes.viewIdeaRouteParams)}

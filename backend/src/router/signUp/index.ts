@@ -2,6 +2,7 @@ import { publicProcedure } from '../../lib/trpc'
 import { zSignUpTrpcInput } from './input'
 // import crypto from 'crypto'
 import getPasswordHash from '../../utils/getPasswordHash'
+import { signJWT } from '../../utils/jwt'
 
 export const signUpTrpcRoute = publicProcedure
   .input(zSignUpTrpcInput)
@@ -16,12 +17,14 @@ export const signUpTrpcRoute = publicProcedure
       throw Error('User with this nick is already exists')
     }
 
-    await ctx.prisma.user.create({
+    const user = await ctx.prisma.user.create({
       data: {
         nick: input.nick,
         password: getPasswordHash(input.password),
       },
     })
 
-    return 'New User has been added'
+    const token = signJWT(user.id)
+    
+    return { token }
   })

@@ -1,6 +1,7 @@
 import { publicProcedure } from '../../lib/trpc'
 import { zSignInTrpcInput } from './input'
 import getPasswordHash from '../../utils/getPasswordHash'
+import { signJWT } from '../../utils/jwt'
 
 export const signInTrpcRoute = publicProcedure
   .input(zSignInTrpcInput)
@@ -16,5 +17,7 @@ export const signInTrpcRoute = publicProcedure
       throw Error('Wrong nick or password')
     }
 
-    return `Sign in user: ${input.nick}`
+    const token = signJWT(user.id)
+
+    return { token }
   })

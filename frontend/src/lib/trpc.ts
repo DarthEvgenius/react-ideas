@@ -4,6 +4,7 @@ import { QueryClient } from '@tanstack/react-query'
 import { httpBatchLink } from '@trpc/client'
 import SuperJSON from 'superjson'
 import Cookies from 'js-cookie'
+import { env } from './lib'
 
 export const trpc = createTRPCReact<TrpcRouterType>()
 
@@ -20,7 +21,7 @@ export const trpcClient = trpc.createClient({
   links: [
     httpBatchLink({
       // here we specify endpoint for all trpc routes -> look into backend/index.ts
-      url: 'http://localhost:3456/trpc',
+      url: env.VITE_BACKEND_TRPC_URL,
       transformer: SuperJSON,
       headers() {
         const token = Cookies.get('token')

@@ -38,6 +38,15 @@ export default defineConfig([
       // not work with prettier
       'no-multiple-empty-lines': ['error', { max: 5 }],
       '@typescript-eslint/no-explicit-any': 'off',
+      // custom rules for esLint -> forbidden import.meta.env access
+      'no-restricted-syntax': [
+        'error',
+        {
+          selector: '[object.type=MetaProperty][property.name=env]',
+          message:
+            'Do not use process.env directly. Use the env module instead.',
+        },
+      ],
     },
     settings: {
       react: {

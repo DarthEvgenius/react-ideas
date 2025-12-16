@@ -2,6 +2,7 @@ import { Passport } from 'passport'
 import { AppContext } from './ctx'
 import { type Express } from 'express'
 import { ExtractJwt, Strategy as JWTStrategy } from 'passport-jwt'
+import { env } from './env'
 
 export function applyPassportToExpressApp(
   expressApp: Express,
@@ -12,7 +13,7 @@ export function applyPassportToExpressApp(
   passport.use(
     new JWTStrategy(
       {
-        secretOrKey: 'not-really-jwt-secret',
+        secretOrKey: env.JWT_SECRET,
         jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme('Bearer'),
       },
       (jwtPayload: string, done) => {

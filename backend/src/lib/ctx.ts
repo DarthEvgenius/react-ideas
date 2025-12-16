@@ -13,8 +13,6 @@ export const createAppContext = () => {
     stop: async () => {
       await prisma.$disconnect()
     },
-    req: Request,
-    res: Response
   }
 }
 

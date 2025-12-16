@@ -15,8 +15,9 @@ import { getAllIdeasRoute } from '../../lib/routes'
 
 export const SignUpPage = () => {
   const navigate = useNavigate()
-  const [submittingError, setSubmittingError] = useState<string | null>(null)
+  const trpcUtils = trpc.useUtils()
   const signUp = trpc.signUp.useMutation()
+  const [submittingError, setSubmittingError] = useState<string | null>(null)
 
   const formik = useFormik({
     initialValues: {
@@ -44,6 +45,8 @@ export const SignUpPage = () => {
         setSubmittingError(null)
         const { token } = await signUp.mutateAsync(values)
         Cookies.set('token', token, { expires: 9999999 })
+
+        trpcUtils.invalidate()
         navigate(getAllIdeasRoute())
       } catch (err: any) {
         setSubmittingError(err.message)

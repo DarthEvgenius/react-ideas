@@ -1,9 +1,10 @@
 import express from 'express'
 import { trpcRouter } from './router'
 import cors from 'cors'
-import { applyTrpcToExporessApp } from './lib/trpc';
+import { applyTrpcToExporessApp } from './lib/trpc'
 import { type AppContext, createAppContext } from './lib/ctx'
-
+import { applyPassportToExpressApp } from './lib/passport'
+import { env } from './lib/env'
 ;(async () => {
   let ctx: AppContext | null = null
 
@@ -11,13 +12,15 @@ import { type AppContext, createAppContext } from './lib/ctx'
     ctx = createAppContext()
     const expressApp = express()
     expressApp.use(cors())
-    
+
+    applyPassportToExpressApp(expressApp, ctx)
+
     await applyTrpcToExporessApp(expressApp, ctx, trpcRouter)
-    
-    expressApp.listen(3456, () => {
-      console.log('Listenint at http://localhost:3456')
+
+    expressApp.listen(env.PORT, () => {
+      console.log('Listenint at http://localhost:' + env.PORT)
     })
-  } catch(error) {
+  } catch (error) {
     console.error(error)
     await ctx?.stop()
   }

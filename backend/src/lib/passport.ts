@@ -38,6 +38,14 @@ export function applyPassportToExpressApp(
       next()
       return
     }
-    passport.authenticate('jwt', { session: false })(req, res, next)
+    passport.authenticate(
+      'jwt',
+      { session: false },
+      // this callback makes user sign Out if token is invalid
+      (...args: any[]) => {
+        req.user = args[1] || undefined
+        next()
+      }
+    )(req, res, next)
   })
 }

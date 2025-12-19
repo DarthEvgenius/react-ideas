@@ -4,6 +4,7 @@ import tseslint from 'typescript-eslint'
 import { defineConfig } from 'eslint/config'
 
 export default defineConfig([
+  tseslint.configs.recommended,
   {
     files: ['**/*.{js,mjs,cjs,ts,mts,cts}'],
     plugins: { js },
@@ -22,7 +23,7 @@ export default defineConfig([
       'no-constant-condition': 'warn',
       // not work with prettier
       'no-multiple-empty-lines': ['error', { max: 5 }],
+      '@typescript-eslint/no-explicit-any': 'off',
     },
   },
-  tseslint.configs.recommended,
 ])

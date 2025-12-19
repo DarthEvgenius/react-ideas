@@ -12,6 +12,7 @@
     "start": "node ./dist/index.js",
     "types": "tsc --noEmit --project ./tsconfig.json",
     "pmd": "prisma migrate dev && npx prisma generate",
+    "prisma:gen": "npx prisma generate",
     "pgc": "prisma generate",
     "prettify": "prettier --loglevel warn --cache --write '{src/**/*,*}.{ts,tsx,js,json,yml,scss}' '!**/{node_modules,dist}/**/*'",
     "lint": "eslint --cache --cache-location ./node_modules/.cache/.eslintcache --ext .ts .",

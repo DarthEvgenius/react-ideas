@@ -1,3 +1,4 @@
+import type { inferRouterInputs, inferRouterOutputs } from '@trpc/server'
 import { trpc } from '../lib/trpc'
 
 /* cmd + shift + p --> generate index
@@ -13,6 +14,7 @@ import { getIdeasTrpcRoute } from './getIdeas'
 import { getMeTrpcRoute } from './getMe'
 import { signInTrpcRoute } from './signIn'
 import { signUpTrpcRoute } from './signUp'
+import { updateIdeaTrpcRoute } from './updateIdea'
 // @endindex
 
 export const trpcRouter = trpc.router({
@@ -23,7 +25,10 @@ export const trpcRouter = trpc.router({
   getMe: getMeTrpcRoute,
   signIn: signInTrpcRoute,
   signUp: signUpTrpcRoute,
+  updateIdea: updateIdeaTrpcRoute,
   // @endindex
 })
 
 export type TrpcRouterType = typeof trpcRouter
+export type TrpcRouterInput = inferRouterInputs<TrpcRouterType>
+export type TrpcRouterOutput = inferRouterOutputs<TrpcRouterType>

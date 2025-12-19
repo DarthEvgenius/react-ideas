@@ -1,6 +1,7 @@
 import type React from 'react'
 import css from './index.module.scss'
 import cn from 'classnames'
+import { Link } from 'react-router-dom'
 
 export default function Button({
   children,
@@ -17,5 +18,19 @@ export default function Button({
     >
       {loading ? 'Submitting...' : children}
     </button>
+  )
+}
+
+export function LinkButton({
+  to,
+  children,
+}: {
+  to: string
+  children: React.ReactNode
+}) {
+  return (
+    <Link className={css.button} to={to}>
+      {children}
+    </Link>
   )
 }
